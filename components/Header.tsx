@@ -25,6 +25,14 @@ export default function Header() {
               About
             </Link>
           </li>
+          <li>
+            <Link 
+              href="/admin" 
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
+              Admin
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
