@@ -11,10 +11,11 @@ export interface PostData {
   content: string
   author?: string
   tags?: string[]
+  category?: string
 }
 
 export function savePost(postData: PostData): void {
-  const { slug, title, date, excerpt, content, author, tags } = postData
+  const { slug, title, date, excerpt, content, author, tags, category } = postData
   
   // Create frontmatter
   let frontmatter = `---
@@ -24,6 +25,10 @@ excerpt: "${excerpt}"`
 
   if (author) {
     frontmatter += `\nauthor: "${author}"`
+  }
+
+  if (category) {
+    frontmatter += `\ncategory: "${category}"`
   }
 
   if (tags && tags.length > 0) {

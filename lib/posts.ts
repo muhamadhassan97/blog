@@ -3,6 +3,8 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import remarkGfm from 'remark-gfm'
+import { processEmbeds, generateLinkPreviews } from './embedProcessor'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -14,6 +16,7 @@ export interface Post {
   content: string
   author?: string
   tags?: string[]
+  category?: string
 }
 
 export function getAllPosts(): Post[] {
@@ -39,6 +42,7 @@ export function getAllPosts(): Post[] {
         content: '',
         author: data.author,
         tags: data.tags,
+        category: data.category,
       }
     })
 
@@ -52,9 +56,17 @@ export function getPostBySlug(slug: string): Post | null {
     const { data, content } = matter(fileContents)
 
     const processedContent = remark()
-      .use(html)
+      .use(remarkGfm)
+      .use(html, { sanitize: false })
       .processSync(content)
-    const contentHtml = processedContent.toString()
+    
+    let contentHtml = processedContent.toString()
+    
+    // Process embeds (YouTube, Twitter, Instagram, etc.)
+    contentHtml = processEmbeds(contentHtml)
+    
+    // Enhance regular links with preview styling
+    contentHtml = generateLinkPreviews(contentHtml)
 
     return {
       slug,
@@ -64,8 +76,27 @@ export function getPostBySlug(slug: string): Post | null {
       content: contentHtml,
       author: data.author,
       tags: data.tags,
+      category: data.category,
     }
   } catch (error) {
     return null
   }
+}
+
+export function getAllCategories(): string[] {
+  const posts = getAllPosts()
+  const categories = new Set<string>()
+  
+  posts.forEach(post => {
+    if (post.category) {
+      categories.add(post.category)
+    }
+  })
+  
+  return Array.from(categories).sort()
+}
+
+export function getPostsByCategory(category: string): Post[] {
+  const posts = getAllPosts()
+  return posts.filter(post => post.category === category)
 }

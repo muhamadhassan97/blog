@@ -3,6 +3,7 @@ title: "Welcome to My Technical Blog"
 date: "2025-11-13"
 excerpt: "This is my first post! Learn about what I'll be writing about and why I started this blog."
 author: "Your Name"
+category: "Tutorial"
 tags: ["welcome", "introduction"]
 ---
 

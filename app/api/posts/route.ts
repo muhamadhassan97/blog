@@ -2,11 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { savePost, deletePost } from '@/lib/postManager'
 
+// Mark this route as dynamic
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     const posts = getAllPosts()
-    return NextResponse.json(posts)
+    return NextResponse.json({ posts })
   } catch (error) {
+    console.error('Error in GET /api/posts:', error)
     return NextResponse.json({ error: 'Error fetching posts' }, { status: 500 })
   }
 }
@@ -14,11 +18,13 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const postData = await request.json()
+    console.log('Saving post:', postData.title)
     savePost(postData)
-    return NextResponse.json({ message: 'Post saved successfully' })
+    console.log('Post saved successfully')
+    return NextResponse.json({ message: 'Post saved successfully', slug: postData.slug })
   } catch (error) {
     console.error('Error saving post:', error)
-    return NextResponse.json({ error: 'Error saving post' }, { status: 500 })
+    return NextResponse.json({ error: 'Error saving post', details: String(error) }, { status: 500 })
   }
 }
 

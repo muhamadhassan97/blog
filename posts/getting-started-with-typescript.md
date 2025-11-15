@@ -3,6 +3,7 @@ title: "Getting Started with TypeScript"
 date: "2025-11-12"
 excerpt: "Learn the basics of TypeScript and why it's becoming the go-to choice for modern JavaScript development."
 author: "Your Name"
+category: "TypeScript"
 tags: ["typescript", "javascript", "tutorial"]
 ---
 

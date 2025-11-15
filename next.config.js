@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  basePath: '/blog',
+  // Disable static export during development to enable API routes
+  // output: 'export',
+  // basePath: '/blog',
   images: {
     unoptimized: true,
   },
