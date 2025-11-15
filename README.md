@@ -51,7 +51,13 @@ npm run dev
 
 ### Using the Admin Panel (Local Development)
 
-1. **Disable static export** for local development:
+1. **Set your admin password** (IMPORTANT - Do this first!):
+   - Open `components/AdminAuth.tsx`
+   - Find the line `const ADMIN_PASSWORD = 'mySecurePassword123'`
+   - Change to your own secure password
+   - See [ADMIN_SETUP.md](ADMIN_SETUP.md) for details
+
+2. **Disable static export** for local development:
    ```javascript
    // In next.config.js
    const nextConfig = {
@@ -61,14 +67,16 @@ npm run dev
    }
    ```
 
-2. **Restart the dev server**:
+3. **Restart the dev server**:
    ```bash
    npm run dev
    ```
 
-3. **Access the admin panel** at [http://localhost:3000/admin](http://localhost:3000/admin)
+4. **Access the admin panel** at [http://localhost:3000/admin](http://localhost:3000/admin)
+   - Enter your admin password
+   - You'll stay logged in until you click "Logout"
 
-4. **Create a new post**:
+5. **Create a new post**:
    - Click "Write a story" or the "+" button
    - Write your title and content with the Medium-style editor
    - Use the floating toolbar for formatting (H1/H2, Bold, Italic, Lists, Code, Quotes)
@@ -76,7 +84,7 @@ npm run dev
    - Click "Preview" to see how it looks
    - Click "Publish" to save
 
-5. **Insert rich media**:
+6. **Insert rich media**:
    - YouTube: Paste video URL or use `[youtube:VIDEO_ID]`
    - Twitter: Paste tweet URL
    - Instagram: Paste post URL
