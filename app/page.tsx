@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getAllPosts, getAllCategories } from '@/lib/posts'
 import { format } from 'date-fns'
+import Sidebar from '@/components/Sidebar'
 
 export default function Home() {
   const posts = getAllPosts()
@@ -68,25 +69,7 @@ export default function Home() {
         </div>
 
         {/* Sidebar */}
-        <aside className="lg:col-span-1">
-          {categories.length > 0 && (
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 sticky top-4">
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Categories</h3>
-              <ul className="space-y-2">
-                {categories.map((category) => (
-                  <li key={category}>
-                    <Link
-                      href={`/category/${encodeURIComponent(category)}`}
-                      className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:underline block"
-                    >
-                      {category}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </aside>
+        <Sidebar posts={posts} categories={categories} />
       </div>
     </div>
   )
