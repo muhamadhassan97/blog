@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { savePost, deletePost } from '@/lib/postManager'
 
-// Mark this route as dynamic
-export const dynamic = 'force-dynamic'
+// Note: API routes don't work with static export (GitHub Pages)
+// This file is only used during local development
+// export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
