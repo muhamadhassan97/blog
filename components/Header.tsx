@@ -24,6 +24,14 @@ export default function Header() {
             </li>
             <li>
               <Link 
+                href="/series" 
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >
+                Series
+              </Link>
+            </li>
+            <li>
+              <Link 
                 href="/about" 
                 className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
               >

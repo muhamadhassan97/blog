@@ -17,6 +17,10 @@ export interface Post {
   author?: string
   tags?: string[]
   category?: string
+  series?: string
+  seriesOrder?: number
+  seriesTitle?: string
+  seriesDescription?: string
 }
 
 export function getAllPosts(): Post[] {
