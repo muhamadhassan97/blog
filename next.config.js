@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export', // Enabled for GitHub Pages deployment
-  // basePath: '/blog', // Disabled for local development - enable before deploying
+  basePath: '/blog', // Required for GitHub Pages
   images: {
     unoptimized: true,
   },
